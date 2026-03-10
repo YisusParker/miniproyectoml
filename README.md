@@ -51,9 +51,25 @@ Si usas `master`, edita `.github/workflows/deploy.yml` y cambia `branches: [main
 
 - Tras el primer `push`, en **Actions** se ejecutará el workflow “MyST GitHub Pages Deploy”.
 - Cuando termine, el sitio estará en:
-  **`https://TU_USUARIO.github.io/proyecto-knn-dropout-book/`**
+  **`https://TU_USUARIO.github.io/NOMBRE_DEL_REPO/`**  
+  (el nombre del repo en GitHub: si se llama `miniproyectoml`, la URL es `https://TU_USUARIO.github.io/miniproyectoml/`).
 
-Ahí verás el notebook con el diseño de libro (navegación lateral, tabla de contenidos, búsqueda), como en la referencia que compartiste.
+Ahí verás el notebook con el diseño de libro (navegación lateral, tabla de contenidos, búsqueda).
+
+---
+
+## Si la página sale en blanco (solo el título)
+
+MyST genera enlaces a CSS/JS según el nombre del repo. Si solo se ve el título y el resto en blanco:
+
+1. **Abre la consola del navegador** (F12 → Console). Si hay 404 en `.js` o `.css`, el `BASE_URL` no coincide con la URL.
+2. **Comprueba la URL**: debe ser `https://TU_USUARIO.github.io/NOMBRE_DEL_REPO/` (con barra final). El nombre del repo es el que usa el workflow.
+3. **Si tu repo tiene otro nombre**, en `.github/workflows/deploy.yml`, en el paso "Build HTML Assets", fija `BASE_URL` a la ruta correcta, por ejemplo:
+   ```yaml
+   env:
+     BASE_URL: /miniproyectoml   # nombre real del repo
+   ```
+4. Haz commit, push y espera a que se vuelva a desplegar.
 
 ---
 

@@ -33,6 +33,9 @@ jobs:
       - name: Install MyST Markdown
         run: npm install -g mystmd
       - name: Build HTML Assets
+        env:
+          # URL del sitio: https://yisusparker.github.io/miniproyectoml/
+          BASE_URL: /miniproyectoml
         run: myst build --html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
